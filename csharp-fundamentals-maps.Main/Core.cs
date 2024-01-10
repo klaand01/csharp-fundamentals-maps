@@ -48,11 +48,10 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
+            Dictionary<string , string> map = createPerson();
+            string result = map[key];
            
-            return string.Empty;
-
-
+            return result;
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -64,8 +63,7 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
+            return dictionary.ContainsKey(isitthere);
          }
 
 
@@ -78,7 +76,12 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+
+            return -1;
 
         }
 
@@ -105,7 +108,18 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            int counter = 0;
+            string temp;
+
+           for (int i = 0; i < numbers.Length; i++)
+           {
+                //if (!map.ContainsKey(numbers[i]))
+                //    continue;
+
+                map.TryGetValue(numbers[i], out temp);
+                results.Add(temp);
+                counter++;
+           }
 
             //    // ...and above this comment
             return results;
